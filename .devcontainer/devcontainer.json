@@ -1,24 +1,14 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-    "name": "photo-timestamp-build-env",
-    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "image": "mcr.microsoft.com/devcontainers/base:jammy",
-    "features": {
-        "ghcr.io/devcontainers/features/go:1": {},
-        "ghcr.io/devcontainers/features/node:1": {},
-        "ghcr.io/devcontainers-contrib/features/typescript:2.0.15": {}
+    "build": {
+        "dockerfile": "Containerfile"
     },
-    // Features to add to the dev container. More info: https://containers.dev/features.
-    // "features": {},
-    // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    // "forwardPorts": [
-    //     3000,
-    //     8080
-    // ],
-    // Use 'postCreateCommand' to run commands after the container is created.
-    // "postCreateCommand": "uname -a",
-    // Configure tool-specific properties.
+    // With podman, this doesn't appear to be working well
+    // "image": "mcr.microsoft.com/devcontainers/go",
+    // "features": {
+    //     "ghcr.io/devcontainers/features/node:1": {
+    //         "version": "latest"
+    //     }
+    // },
     "customizations": {
         "vscode": {
             "extensions": [
@@ -30,7 +20,12 @@
             ]
         }
     },
-    // Run as root in the container. More info: https://aka.ms/dev-containers-non-root.
-    // For me, this is done b/c my user outside the container doesn't have permission to add files inside the container
-    "remoteUser": "root"
+    "runArgs": [
+        "--userns=keep-id:uid=1000,gid=1000"
+    ],
+    "containerUser": "vscode",
+    "updateRemoteUserUID": true,
+    "containerEnv": {
+        "HOME": "/home/vscode"
+    }
 }
