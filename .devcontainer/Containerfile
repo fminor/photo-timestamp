@@ -1,1 +1,14 @@
-FROM mcr.microsoft.com/devcontainers/go
+# Using https://hub.docker.com/_/archlinux/
+
+FROM archlinux:latest
+
+WORKDIR /home/root
+
+COPY package_list.txt .
+
+RUN pacman -Syu --noconfirm && grep -v '^#' package_list.txt | xargs pacman -S --noconfirm
+
+# "containerUser" in .devcontainer.json should do this, but wasn't
+RUN useradd -m vscode
+
+CMD ["/bin/bash"]

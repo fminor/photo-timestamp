@@ -1,6 +1,10 @@
 {
     "build": {
-        "dockerfile": "Containerfile"
+        "dockerfile": "Containerfile",
+        "context": "context",
+        "options": [
+            "--dns=8.8.8.8"
+        ]
     },
     // With podman, this doesn't appear to be working well
     // "image": "mcr.microsoft.com/devcontainers/go",
@@ -12,6 +16,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                "ms-azuretools.vscode-containers",
                 "streetsidesoftware.code-spell-checker",
                 "DavidAnson.vscode-markdownlint",
                 "eamodio.gitlens",

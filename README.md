@@ -33,7 +33,17 @@ How to build & run application in build environment:
 
 ## Feature Roadmap
 
+0. Dev Environment
+   * [X] Install go in container
+   * [X] Install nodejs in container
+   * [ ] Mount sample photos to container
+   * [ ] Cache go dependencies?
 1. Compare image timestamp with folder structure date of image
+   * [ ] Recursively search for photos from given path
+   * [ ] Load image metadata
+   * [ ] Compute date from image path
+   * [ ] Compare timestamp to date
+   * [ ] Produce list
 2. User Interface: Select & Update timestamps
 3. User Interface: Manual timestamp selection
 4. Containerized App (Runtime)
